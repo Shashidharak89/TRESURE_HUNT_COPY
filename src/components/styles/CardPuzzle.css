@@ -1,620 +1,500 @@
-/* Squid Game Puzzle Styling */
 .squid-puzzle-container {
+    --squid-primary: #ff0676;
+    --squid-secondary: #22ffde;
+    --squid-bg: #121212;
+    --squid-dark: #171717;
+    --squid-darker: #0a0a0a;
+    --squid-light: #e0e0e0;
+    --squid-text: #ffffff;
+    --squid-error: #ff4d4d;
+    --squid-success: #38ef7d;
+    
     position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--squid-bg);
+    color: var(--squid-text);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+  
+  /* Intro Screen */
+  .squid-puzzle-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
+    padding: 2rem;
+  }
+  
+  .squid-puzzle-intro h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--squid-primary);
+    text-shadow: 0 0 10px rgba(255, 6, 118, 0.6), 0 0 20px rgba(255, 6, 118, 0.3);
+  }
+  
+  .squid-puzzle-intro p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+  }
+  
+  /* Game Container */
+  .squid-puzzle-game {
     width: 100%;
     max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Roboto', sans-serif;
-    color: #ffffff;
-    overflow: hidden;
-}
-
-.squid-puzzle-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     height: 100%;
-    z-index: -1;
-    background: linear-gradient(135deg, #0f0f29 0%, #1a1a3a 25%, #24243e 50%, #1a1a3a 75%, #0f0f29 100%);
-    background-size: 400% 400%;
-    opacity: 0.95;
-}
-
-.squid-puzzle-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.squid-puzzle-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #ff2d55;
-    text-shadow: 0 0 10px rgba(255, 45, 85, 0.7);
-    letter-spacing: 2px;
-}
-
-.squid-puzzle-instructions {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    max-width: 600px;
-    margin: 0 auto 20px;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(4px);
-}
-
-/* Status bar */
-.squid-puzzle-status {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.squid-puzzle-controls {
-    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: 600px;
-    padding: 10px 15px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.squid-puzzle-timer {
-    font-size: 1.2rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.squid-puzzle-timer-icon {
-    animation: pulse 1s infinite alternate;
-}
-
-.squid-puzzle-timer-warning {
-    color: #ff2d55;
-    animation: blink 1s infinite alternate;
-}
-
-.squid-puzzle-attempts {
-    font-size: 1rem;
-}
-
-/* Buttons */
-.squid-puzzle-start-button,
-.squid-puzzle-reset-button,
-.squid-puzzle-hint-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.squid-puzzle-start-button {
-    background-color: #ff2d55;
-    color: white;
-    font-size: 1.2rem;
-    padding: 12px 30px;
-}
-
-.squid-puzzle-start-button:hover {
-    background-color: #ff4d6d;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-}
-
-.squid-puzzle-reset-button {
-    background-color: #2d3748;
-    color: white;
-}
-
-.squid-puzzle-reset-button:hover {
-    background-color: #4a5568;
-}
-
-.squid-puzzle-hint-button {
-    background-color: #805ad5;
-    color: white;
-}
-
-.squid-puzzle-hint-button:hover {
-    background-color: #9f7aea;
-}
-
-/* Game area */
-.squid-puzzle-game-area {
-    position: relative;
+  }
+  
+  /* Header */
+  .squid-puzzle-header {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.squid-puzzle-board {
+    margin-bottom: 2rem;
+  }
+  
+  .squid-puzzle-header h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--squid-secondary);
+    text-shadow: 0 0 10px rgba(34, 255, 222, 0.4);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .squid-puzzle-stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 0.5rem;
+  }
+  
+  .squid-puzzle-level,
+  .squid-puzzle-attempts {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--squid-darker);
+    color: var(--squid-light);
+  }
+  
+  /* Hint */
+  .squid-puzzle-hint {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--squid-secondary);
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    border-left: 3px solid var(--squid-secondary);
+    position: absolute;
+    top: 150px;
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Game Area */
+  .squid-puzzle-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    max-height: 600px;
+  }
+  
+  /* Board */
+  .squid-puzzle-board {
+    position: relative;
+    display: grid;
+    gap: 8px;
+    background-color: var(--squid-darker);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .squid-puzzle-flash {
+    animation: flash 0.3s ease;
+  }
+  
+  @keyframes flash {
+    0%, 100% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+    50% { box-shadow: 0 10px 30px rgba(255, 6, 118, 0.8); }
+  }
+  
+  /* Tiles */
+  .squid-puzzle-tile {
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    perspective: 1000px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .squid-puzzle-tile-inner {
     position: relative;
     width: 100%;
-    max-width: 500px;
-    aspect-ratio: 1/1;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    transition: box-shadow 0.5s ease;
-}
-
-.squid-puzzle-solved {
-    box-shadow: 0 0 30px rgba(255, 45, 85, 0.8);
-}
-
-.squid-puzzle-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .squid-puzzle-tile-revealed .squid-puzzle-tile-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .squid-puzzle-tile-front,
+  .squid-puzzle-tile-back {
+    position: absolute;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.squid-puzzle-grid-cell {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Puzzle pieces */
-.squid-puzzle-piece {
-    position: absolute;
-    width: calc(100% / 3);
-    height: calc(100% / 3);
-    background-color: #ff2d55;
-    border-radius: 8px;
-    cursor: grab;
+    backface-visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.squid-puzzle-piece:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-.squid-puzzle-piece:active {
-    cursor: grabbing;
-    transform: scale(1.05);
-}
-
-.squid-puzzle-piece-placed {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.squid-puzzle-piece-glow {
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: calc(14px + 1vmin);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .squid-puzzle-tile-front {
+    background: linear-gradient(135deg, var(--squid-dark), #262626);
+    color: var(--squid-light);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .squid-puzzle-tile-front::before {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.squid-puzzle-piece:hover .squid-puzzle-piece-glow {
-    opacity: 0.5;
-}
-
-/* Connection points */
-.squid-puzzle-connector {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
-
-.squid-puzzle-connector-top {
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 0 15px 15px 15px;
-    border-color: transparent transparent white transparent;
-}
-
-.squid-puzzle-connector-right {
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 15px 0 15px 15px;
-    border-color: transparent transparent transparent white;
-}
-
-.squid-puzzle-connector-bottom {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 15px 15px 0 15px;
-    border-color: white transparent transparent transparent;
-}
-
-.squid-puzzle-connector-left {
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 15px 15px 15px 0;
-    border-color: transparent white transparent transparent;
-}
-
-.squid-puzzle-connector-in {
-    border-style: solid;
-}
-
-.squid-puzzle-connector-out {
-    border-style: dashed;
-}
-
-/* Hint overlay */
-.squid-puzzle-hint-overlay {
-    position: absolute;
     width: 100%;
     height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/svg%3E");
+    opacity: 0.1;
+  }
+  
+  .squid-puzzle-tile-back {
+    background: linear-gradient(135deg, #232526, #414345);
+    color: var(--squid-text);
+    transform: rotateY(180deg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .squid-puzzle-tile-selected .squid-puzzle-tile-back {
+    background: linear-gradient(135deg, var(--squid-primary), #ad1457);
+    color: white;
+    animation: pulse 2s infinite;
+  }
+  
+  .squid-puzzle-tile-matched .squid-puzzle-tile-back {
+    background: linear-gradient(135deg, var(--squid-secondary), #009688);
+    color: #003;
+  }
+  
+  .squid-puzzle-tile-symbol {
+    font-size: calc(20px + 1vmin);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    user-select: none;
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 6, 118, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 6, 118, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 6, 118, 0);
+    }
+  }
+  
+  /* Controls */
+  .squid-puzzle-controls {
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
-}
-
-.squid-puzzle-hint-id {
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-/* Staging area */
-.squid-puzzle-staging-area {
+    gap: 1.5rem;
+    margin-top: 2rem;
     width: 100%;
-    max-width: 500px;
-    height: 200px;
-    margin-top: 20px;
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-}
-
-/* Win/Lose messages */
-.squid-puzzle-win-message,
-.squid-puzzle-lose-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 30px;
-    border-radius: 10px;
+  }
+  
+  /* Buttons */
+  .squid-puzzle-start-button,
+  .squid-puzzle-reset-button,
+  .squid-puzzle-restart-button,
+  .squid-puzzle-hint-button {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .squid-puzzle-start-button,
+  .squid-puzzle-restart-button {
+    background-color: var(--squid-primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(255, 6, 118, 0.4);
+  }
+  
+  .squid-puzzle-start-button:before,
+  .squid-puzzle-restart-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+    z-index: -1;
+  }
+  
+  .squid-puzzle-start-button:hover:before,
+  .squid-puzzle-restart-button:hover:before {
+    left: 100%;
+  }
+  
+  .squid-puzzle-hint-button,
+  .squid-puzzle-reset-button {
+    background-color: transparent;
+    color: var(--squid-text);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .squid-puzzle-hint-button:hover,
+  .squid-puzzle-reset-button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Victory Screen */
+  .squid-puzzle-victory {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    font-size: 1.5rem;
-    z-index: 100;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-}
-
-.squid-puzzle-win-message {
-    background-color: rgba(0, 128, 0, 0.7);
-    border: 2px solid #00ff00;
-}
-
-.squid-puzzle-lose-message {
-    background-color: rgba(128, 0, 0, 0.7);
-    border: 2px solid #ff0000;
-}
-
-.squid-puzzle-win-message span,
-.squid-puzzle-lose-message span {
-    font-size: 2rem;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.squid-puzzle-stats {
-    margin-top: 15px;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* Animations */
-@keyframes pulse {
-    from {
-        transform: scale(1);
+    max-width: 600px;
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+  }
+  
+  .squid-puzzle-victory h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--squid-secondary);
+    text-shadow: 0 0 10px rgba(34, 255, 222, 0.6), 0 0 20px rgba(34, 255, 222, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .squid-puzzle-victory p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+  
+  .squid-puzzle-victory .squid-puzzle-restart-button {
+    margin-top: 2rem;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media screen and (max-width: 768px) {
+    .squid-puzzle-container {
+      padding: 1rem;
     }
-
-    to {
-        transform: scale(1.1);
+    
+    .squid-puzzle-intro h1,
+    .squid-puzzle-victory h1 {
+      font-size: 2.5rem;
     }
-}
-
-@keyframes blink {
-    from {
-        opacity: 1;
+    
+    .squid-puzzle-header h2 {
+      font-size: 1.8rem;
     }
-
-    to {
-        opacity: 0.6;
+    
+    .squid-puzzle-area {
+      height: 50vh;
     }
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
+    
+    .squid-puzzle-tile-symbol {
+      font-size: calc(14px + 1vmin);
     }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    .squid-puzzle-header h1 {
-        font-size: 1.8rem;
-    }
-
-    .squid-puzzle-instructions {
-        font-size: 0.8rem;
-    }
-
-    .squid-puzzle-controls {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .squid-puzzle-timer,
-    .squid-puzzle-attempts {
-        font-size: 0.9rem;
-    }
-
+    
     .squid-puzzle-start-button,
     .squid-puzzle-reset-button,
+    .squid-puzzle-restart-button,
     .squid-puzzle-hint-button {
-        padding: 8px 12px;
-        font-size: 0.9rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
     }
-
-    .squid-puzzle-connector-top,
-    .squid-puzzle-connector-bottom {
-        border-width: 0 10px 10px 10px;
-    }
-
-    .squid-puzzle-connector-right,
-    .squid-puzzle-connector-left {
-        border-width: 10px 10px 10px 0;
-    }
-
-    .squid-puzzle-hint-id {
-        font-size: 1.5rem;
-    }
-
-    .squid-puzzle-win-message,
-    .squid-puzzle-lose-message {
-        width: 90%;
-        max-width: 300px;
-        padding: 20px;
-        font-size: 1.2rem;
-    }
-
-    .squid-puzzle-win-message span,
-    .squid-puzzle-lose-message span {
-        font-size: 1.5rem;
-    }
-
-    .squid-puzzle-stats {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .squid-puzzle-container {
-        padding: 10px;
-    }
-
-    .squid-puzzle-header h1 {
-        font-size: 1.5rem;
-    }
-
-    .squid-puzzle-instructions {
-        font-size: 0.7rem;
-        padding: 10px;
-    }
-
+    
     .squid-puzzle-controls {
-        padding: 8px;
-        justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
     }
-
-    .squid-puzzle-timer,
-    .squid-puzzle-attempts {
-        margin: 5px;
-        font-size: 0.8rem;
-    }
-
-    .squid-puzzle-start-button {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-
+    
     .squid-puzzle-hint-button,
     .squid-puzzle-reset-button {
-        margin: 5px;
-        padding: 6px 10px;
-        font-size: 0.8rem;
+      width: 100%;
+      max-width: 200px;
     }
-
-    .squid-puzzle-board {
-        max-width: 300px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .squid-puzzle-intro h1,
+    .squid-puzzle-victory h1 {
+      font-size: 2rem;
     }
-
-    .squid-puzzle-staging-area {
-        height: 150px;
+    
+    .squid-puzzle-intro p,
+    .squid-puzzle-victory p {
+      font-size: 1rem;
     }
-
-    .squid-puzzle-connector-top,
-    .squid-puzzle-connector-bottom {
-        border-width: 0 8px 8px 8px;
+    
+    .squid-puzzle-header h2 {
+      font-size: 1.5rem;
     }
-
-    .squid-puzzle-connector-right,
-    .squid-puzzle-connector-left {
-        border-width: 8px 8px 8px 0;
+    
+    .squid-puzzle-area {
+      height: 45vh;
     }
-
-    .squid-puzzle-piece:active {
-        transform: scale(1.03);
+    
+    .squid-puzzle-stats {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
     }
-
-    .squid-puzzle-hint-id {
-        font-size: 1.2rem;
+    
+    .squid-puzzle-level,
+    .squid-puzzle-attempts {
+      width: 100%;
+      text-align: center;
     }
-
-    .squid-puzzle-win-message,
-    .squid-puzzle-lose-message {
-        padding: 15px;
-        font-size: 1rem;
-    }
-
-    .squid-puzzle-win-message span,
-    .squid-puzzle-lose-message span {
-        font-size: 1.3rem;
-    }
-}
-
-/* Dark mode enhancements */
-@media (prefers-color-scheme: dark) {
-    .squid-puzzle-background {
-        background: linear-gradient(135deg, #0a0a20 0%, #151530 25%, #1f1f35 50%, #151530 75%, #0a0a20 100%);
-    }
-
-    .squid-puzzle-board {
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .squid-puzzle-grid-cell {
-        border-color: rgba(255, 255, 255, 0.05);
-    }
-
-    .squid-puzzle-piece {
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-    }
-}
-
-/* Animation for piece entrance */
-.squid-puzzle-piece-entrance {
-    animation: pieceEntrance 0.5s ease forwards;
-}
-
-@keyframes pieceEntrance {
-    0% {
-        opacity: 0;
-        transform: scale(0) rotate(180deg);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
-}
-
-/* Glowing effect for connected pieces */
-.squid-puzzle-piece-connected {
-    animation: connectedPulse 2s infinite alternate;
-}
-
-@keyframes connectedPulse {
-    0% {
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-    }
-
-    100% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-    }
-}
-
-/* Special celebratory animation for winning */
-.squid-puzzle-celebration {
-    position: fixed;
+  }
+  
+  /* Special Animations */
+  @keyframes glowPulse {
+    0% { box-shadow: 0 0 5px rgba(34, 255, 222, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(34, 255, 222, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(34, 255, 222, 0.5); }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+  
+  /* Animation for when a level is completed */
+  .squid-puzzle-board.level-complete {
+    animation: glowPulse 1.5s infinite;
+  }
+  
+  /* Animation for incorrect selection */
+  .squid-puzzle-board.shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+  
+  /* Background design elements */
+  .squid-puzzle-bg-shapes {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 90;
-    background: radial-gradient(circle, rgba(255, 45, 85, 0) 0%, rgba(255, 45, 85, 0.2) 100%);
-    opacity: 0;
-    animation: celebrationFade 3s ease forwards;
-}
-
-@keyframes celebrationFade {
-    0% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-/* Confetti particles for celebration */
-.squid-puzzle-confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ff2d55;
-    opacity: 0.8;
-    animation: confettiFall 4s linear forwards;
-}
-
-@keyframes confettiFall {
-    0% {
-        transform: translateY(-100vh) rotate(0deg);
-    }
-
-    100% {
-        transform: translateY(100vh) rotate(720deg);
-    }
-}
-
-/* Accessibility improvements */
-.squid-puzzle-container:focus-within {
-    outline: 2px solid #ff2d55;
-    outline-offset: 4px;
-}
-
-.squid-puzzle-piece:focus {
-    outline: 2px solid white;
-    z-index: 20;
-}
-
-/* Screen reader only text */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
+    z-index: -1;
+  }
+  
+  .squid-puzzle-bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 6, 118, 0.2) 0%, rgba(255, 6, 118, 0) 70%);
+    filter: blur(20px);
+    opacity: 0.5;
+    animation: floatAnimation 20s infinite ease-in-out;
+  }
+  
+  .squid-puzzle-bg-shape:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    left: -150px;
+    animation-delay: 0s;
+  }
+  
+  .squid-puzzle-bg-shape:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    right: -200px;
+    background: radial-gradient(circle, rgba(34, 255, 222, 0.15) 0%, rgba(34, 255, 222, 0) 70%);
+    animation-delay: -5s;
+  }
+  
+  .squid-puzzle-bg-shape:nth-child(3) {
+    width: 250px;
+    height: 250px;
+    bottom: -100px;
+    left: 30%;
+    background: radial-gradient(circle, rgba(255, 217, 0, 0.1) 0%, rgba(255, 217, 0, 0) 70%);
+    animation-delay: -10s;
+  }
+  
+  @keyframes floatAnimation {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-30px, 30px); }
+    50% { transform: translate(0, 50px); }
+    75% { transform: translate(30px, 30px); }
+  }
