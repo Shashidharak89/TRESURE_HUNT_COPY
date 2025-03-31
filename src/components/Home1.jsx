@@ -22,6 +22,11 @@ const Home1 = () => {
     // Set exiting state to trigger animations
     setIsExiting(true);
     
+    // Store system time in localStorage only if not already set
+    if (!localStorage.getItem('time')) {
+      localStorage.setItem('time', new Date().toISOString());
+    }
+    
     // Navigate after animation completes
     setTimeout(() => {
       navigate('/round1');

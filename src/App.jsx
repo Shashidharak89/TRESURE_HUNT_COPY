@@ -7,12 +7,14 @@ import FinalRound from "./components/FinalRound";
 import Home1 from "./components/Home1";
 import Begin from "./components/Begin";
 import ViewData from "./components/ViewData";
+import Timer from "./components/Timer";
 
 
 function App() {
   return (
     <Router>
       <div className="app">
+        <Timer/>
         
         <Routes>
           <Route path="/home" element={<Home1/>} />
