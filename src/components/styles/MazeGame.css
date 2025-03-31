@@ -1,191 +1,271 @@
-.squid-maze-game {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #0f1c2e;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+.compact-maze-game {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto;
+  background-color: #121212;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(159, 0, 255, 0.5);
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.compact-maze-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.compact-maze-header h1 {
+  color: #ff0058;
+  font-size: 1.8rem;
+  margin: 0 0 5px 0;
+  text-shadow: 0 0 10px rgba(255, 0, 88, 0.7);
+  letter-spacing: 1px;
+}
+
+.compact-maze-header p {
+  color: #10f5d1;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.compact-maze-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.compact-maze-start-button, .compact-maze-reset-button {
+  background-color: #ff0058;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(255, 0, 88, 0.5);
+}
+
+.compact-maze-start-button {
+  padding: 10px 25px;
+  font-size: 1.2rem;
+  animation: pulse 2s infinite;
+}
+
+.compact-maze-reset-button {
+  background-color: #333;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+}
+
+.compact-maze-start-button:hover, .compact-maze-reset-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 0, 88, 0.8);
+}
+
+.compact-maze-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.compact-maze-moves {
+  font-size: 0.9rem;
+  color: #10f5d1;
+}
+
+.compact-maze-moves span {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.compact-maze-gameplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.compact-maze-container {
+  position: relative;
+  background-color: #000;
+  padding: 5px;
+  border-radius: 6px;
+  border: 2px solid #ff0058;
+  overflow: hidden;
+  outline: none;
+  box-shadow: 0 0 15px rgba(16, 245, 209, 0.3);
+}
+
+.compact-maze-row {
+  display: flex;
+}
+
+.compact-maze-cell {
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+}
+
+.compact-maze-wall {
+  background-color: #9f00ff;
+  border: 1px solid #000;
+  box-shadow: inset 0 0 5px rgba(16, 245, 209, 0.3);
+}
+
+.compact-maze-path {
+  background-color: rgba(16, 245, 209, 0.05);
+  border: 1px solid rgba(16, 245, 209, 0.2);
+}
+
+.compact-maze-rocket {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff0058"><path d="M12,2.5c0,0,4.5,2.04,4.5,10.5c0,2.49-1.04,5.57-1.6,7H9.1c-0.56-1.43-1.6-4.51-1.6-7C7.5,4.54,12,2.5,12,2.5z M14,11c0-1.1-0.9-2-2-2s-2,0.9-2,2s0.9,2,2,2S14,12.1,14,11z M7.69,20H2v2h5.69c0.24-0.69,0.63-1.41,1.13-2H7.69z M21.31,22H16.3c0.5-0.59,0.89-1.3,1.13-2H22v2H21.31z"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 2.5px;
+  left: 2.5px;
+  transition: transform 0.3s;
+  filter: drop-shadow(0 0 3px rgba(255, 0, 88, 0.8));
+  z-index: 2;
+}
+
+.compact-maze-finish {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2310f5d1"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>');
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: glow 2s infinite alternate;
+}
+
+.compact-maze-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.compact-maze-control-row {
+  display: flex;
+  gap: 10px;
+}
+
+.compact-maze-control-button {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(16, 245, 209, 0.2);
+  border: 2px solid #10f5d1;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  color: #10f5d1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.compact-maze-control-button:hover {
+  background-color: rgba(16, 245, 209, 0.4);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(16, 245, 209, 0.8);
+}
+
+.compact-maze-control-button:active {
+  transform: scale(0.95);
+}
+
+.compact-maze-win-message {
+  background-color: #10f5d1;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  animation: pop 0.5s ease-out;
+  box-shadow: 0 0 15px rgba(16, 245, 209, 0.8);
+}
+
+.compact-maze-win-message span {
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #ff0058;
+}
+
+.compact-maze-win-message p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 3px rgba(16, 245, 209, 0.5));
+  }
+  to {
+    filter: drop-shadow(0 0 10px rgba(16, 245, 209, 0.9));
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Media queries to ensure it fits on various screens */
+@media (max-width: 420px) {
+  .compact-maze-game {
+    max-width: 320px;
+    padding: 10px;
   }
   
-  .squid-maze-instructions {
-    width: 100%;
-    text-align: center;
-    padding: 0.75rem;
-    color: #bb86fc;
-    font-size: 0.9rem;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
-    border-left: 3px solid #bb86fc;
+  .compact-maze-cell {
+    width: 24px;
+    height: 24px;
   }
   
-  .squid-maze-instructions p {
-    margin: 0.3rem 0;
+  .compact-maze-rocket {
+    width: 20px;
+    height: 20px;
   }
   
-  .squid-maze-status {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
-    margin-bottom: 1rem;
+  .compact-maze-control-button {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
   }
-  
-  .squid-maze-start-button, .squid-maze-reset-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  .squid-maze-start-button {
-    background-color: #03dac6;
-    color: #0f1c2e;
-  }
-  
-  .squid-maze-start-button:hover {
-    background-color: #00b0a2;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(3, 218, 198, 0.3);
-  }
-  
-  .squid-maze-reset-button {
-    background-color: #cf6679;
-    color: #0f1c2e;
-  }
-  
-  .squid-maze-reset-button:hover {
-    background-color: #b8505f;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(207, 102, 121, 0.3);
-  }
-  
-  .squid-maze-timer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid #bb86fc;
-    animation: pulse 1s infinite alternate;
-  }
-  
-  @keyframes pulse {
-    from {
-      box-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
-    }
-    to {
-      box-shadow: 0 0 20px rgba(187, 134, 252, 0.8);
-    }
-  }
-  
-  .squid-maze-timer-value {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #bb86fc;
-  }
-  
-  .squid-maze-timer-label {
-    font-size: 0.7rem;
-    color: #bb86fc;
-    opacity: 0.8;
-  }
-  
-  .squid-maze-container {
-    width: 100%;
-    max-width: 400px;
-    aspect-ratio: 1;
-    border: 2px solid #bb86fc;
-    border-radius: 8px;
-    overflow: hidden;
-    outline: none;
-  }
-  
-  .squid-maze-row {
-    display: flex;
-    width: 100%;
-    height: 10%;
-  }
-  
-  .squid-maze-cell {
-    width: 10%;
-    height: 100%;
-    transition: background-color 0.3s ease;
-  }
-  
-  .squid-maze-wall {
-    background-color: #121212;
-    border: 1px solid #1d1d1d;
-  }
-  
-  .squid-maze-path {
-    background-color: #1e2a36;
-    border: 1px solid #233344;
-  }
-  
-  .squid-maze-player {
-    background-color: #ff0266;
-    border-radius: 50%;
-    animation: playerPulse 0.8s infinite alternate;
-  }
-  
-  @keyframes playerPulse {
-    from {
-      transform: scale(0.8);
-      box-shadow: 0 0 0 rgba(255, 2, 102, 0.7);
-    }
-    to {
-      transform: scale(1);
-      box-shadow: 0 0 10px rgba(255, 2, 102, 0.7);
-    }
-  }
-  
-  .squid-maze-finish {
-    background-color: #03dac6;
-    animation: finishPulse 1.5s infinite alternate;
-  }
-  
-  @keyframes finishPulse {
-    from {
-      opacity: 0.7;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .squid-maze-win-message {
-    margin-top: 1rem;
-    padding: 1rem;
-    text-align: center;
-    background-color: rgba(3, 218, 198, 0.15);
-    border-radius: 6px;
-    color: #03dac6;
-    font-size: 1.2rem;
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  .squid-maze-win-message span {
-    font-weight: bold;
-    color: #bb86fc;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+}

@@ -7,7 +7,6 @@ const MemoryGame = ({ onComplete }) => {
   const [matchedPairs, setMatchedPairs] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
   const [moves, setMoves] = useState(0);
-  const [countdown, setCountdown] = useState(60);
   const [gameWon, setGameWon] = useState(false);
 
   // Squid Game themed card symbols
@@ -22,22 +21,6 @@ const MemoryGame = ({ onComplete }) => {
       initializeGame();
     }
   }, [gameStarted]);
-
-  // Handle countdown
-  useEffect(() => {
-    let timer = null;
-    if (gameStarted && !gameWon && countdown > 0) {
-      timer = setInterval(() => {
-        setCountdown(prev => prev - 1);
-      }, 1000);
-    } else if (countdown === 0) {
-      resetGame();
-    }
-    
-    return () => {
-      if (timer) clearInterval(timer);
-    };
-  }, [gameStarted, gameWon, countdown]);
 
   // Check for win condition
   useEffect(() => {
@@ -82,7 +65,6 @@ const MemoryGame = ({ onComplete }) => {
     setFlippedIndices([]);
     setMatchedPairs([]);
     setMoves(0);
-    setCountdown(60);
     setGameWon(false);
   };
 
@@ -115,7 +97,6 @@ const MemoryGame = ({ onComplete }) => {
     setFlippedIndices([]);
     setMatchedPairs([]);
     setMoves(0);
-    setCountdown(60);
     setGameWon(false);
   };
 
@@ -133,11 +114,6 @@ const MemoryGame = ({ onComplete }) => {
         ) : (
           <>
             <div className="squid-memory-stats">
-              <div className="squid-memory-timer">
-                <div className="squid-memory-timer-value">{countdown}</div>
-                <div className="squid-memory-timer-label">seconds</div>
-              </div>
-              
               <div className="squid-memory-moves">
                 <div className="squid-memory-moves-value">{moves}</div>
                 <div className="squid-memory-moves-label">moves</div>
