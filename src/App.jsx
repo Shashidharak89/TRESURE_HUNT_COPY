@@ -23,8 +23,8 @@ function App() {
           <Route path="/admin" element={<ViewData/>} />
           <Route path="/round1" element={<Round1 />} />
           <Route path="/round2" element={<Round2 />} />
-          <Route path="/round3" element={<Round3 />} />
-          <Route path="/final" element={<FinalRound />} />
+          <Route path="/round3secretroute123" element={<Round3 />} />
+          <Route path="/finalroundxyz123" element={<FinalRound />} />
         </Routes>
       </div>
      

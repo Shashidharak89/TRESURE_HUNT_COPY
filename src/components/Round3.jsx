@@ -212,7 +212,7 @@ function Round3() {
         <div className="squid-round3-final-link">
           <p className="squid-round3-final-message">Final Link Unlocked:</p>
           <div className="squid-round3-link-display">{pieces.join(" ")}</div>
-          <Link to="/final" className="squid-round3-next-button">
+          <Link to="/finalroundxyz123" className="squid-round3-next-button">
             <span className="squid-round3-next-text">Proceed to Final Round</span>
           </Link>
         </div>

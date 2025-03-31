@@ -10,7 +10,7 @@ function Round2() {
   const [isShaking, setIsShaking] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  const {URL}=useContext(AuthContext);
+  const { URL } = useContext(AuthContext);
 
   useEffect(() => {
     // Fetch team and participants from localStorage
@@ -19,18 +19,18 @@ function Round2() {
     const participant2 = localStorage.getItem("m2");
 
     if (team && participant1 && participant2) {
-      axios.post(URL+"/api/round2", {
+      axios.post(URL + "/api/round2", {
         team,
         participant1,
         participant2,
         endTime: "2025-03-31T15:00:00Z", // Default endTime
       })
-      .then(response => {
-        console.log("Round2 data submitted:", response.data);
-      })
-      .catch(error => {
-        console.error("Error submitting Round2 data:", error);
-      });
+        .then(response => {
+          console.log("Round2 data submitted:", response.data);
+        })
+        .catch(error => {
+          console.error("Error submitting Round2 data:", error);
+        });
     } else {
       console.log("Skipping request: Missing team or participants in localStorage");
     }
@@ -80,7 +80,7 @@ function Round2() {
           <div className="squid-game-success">
             <div className="squid-game-confetti"></div>
             <p className="squid-game-correct">Correct! Here is your next clue:</p>
-            <Link to="/round3" className="squid-game-next-link">
+            <Link to="/round3secretroute123" className="squid-game-next-link">
               <span className="squid-game-next-text">Go to Round 3</span>
               <svg className="squid-game-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
             </Link>
