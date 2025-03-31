@@ -53,7 +53,7 @@ const Home1 = () => {
           <div className="cipher_mask">
             <div className="cipher_title_text">CIPHER 2K25</div>
             <div className="cipher_presents_text">presents</div>
-            <div className="cipher_event_name">CIPHER HUNT</div>
+            <div className="cipher_event_name">THE SURVIVAL HUNT</div>
           </div>
         </div>
       )}
@@ -63,12 +63,14 @@ const Home1 = () => {
         <div className="cipher_main_content">
           <div className="cipher_logo_container">
             <div className="cipher_logo">
-              <span className="cipher_logo_text">C</span>
-              <span className="cipher_logo_text">I</span>
-              <span className="cipher_logo_text">P</span>
-              <span className="cipher_logo_text">H</span>
-              <span className="cipher_logo_text">E</span>
+              <span className="cipher_logo_text">S</span>
+              <span className="cipher_logo_text">U</span>
               <span className="cipher_logo_text">R</span>
+              <span className="cipher_logo_text">V</span>
+              <span className="cipher_logo_text">I</span>
+              <span className="cipher_logo_text">V</span>
+              <span className="cipher_logo_text">A</span>
+              <span className="cipher_logo_text">L</span>
             </div>
             <div className="cipher_logo_subtitle">HUNT</div>
           </div>

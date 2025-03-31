@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import './styles/Timer.css';
 
 const Timer = () => {
-  const [timeLeft, setTimeLeft] = useState({ minutes: 90, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ minutes: 60, seconds: 0 });
 
   useEffect(() => {
     const updateTimer = () => {
       const storedTime = localStorage.getItem('time');
       if (storedTime) {
         const startTime = new Date(storedTime).getTime();
-        const endTime = startTime + 90 * 60 * 1000; // 90 minutes from stored time
+        const endTime = startTime + 60 * 60 * 1000; // 90 minutes from stored time
         const now = new Date().getTime();
         const remainingTime = endTime - now;
 
