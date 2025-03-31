@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import MazeGame from "./games/MazeGame";
-import MemoryGame from "./games/MemoryGame";
-import CardPuzzle from "./games/CardPuzzle";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import './styles/Round3.css';
 import AuthContext from "../contexts/AuthContext";
+import CardPuzzle from "./CardPuzzle";
+import MemoryGame from "./MemoryGame";
+import MazeGame from "./MazeGame";
 
 function Round3() {
   const [pieces, setPieces] = useState([]);
@@ -15,9 +15,11 @@ function Round3() {
   const [cardSolved, setCardSolved] = useState(false);
   const [activeGame, setActiveGame] = useState("maze");
   const [requestSent, setRequestSent] = useState(false);
+  const [showGamePopup, setShowGamePopup] = useState(false);
+  const [currentGame, setCurrentGame] = useState(null);
 
+  const { URL } = useContext(AuthContext);
 
-  const {URL}=useContext(AuthContext);
   // Send API request when component mounts, but only once
   useEffect(() => {
     const sendRoundData = async () => {
@@ -51,13 +53,16 @@ function Round3() {
     };
     
     sendRoundData();
-  }, [requestSent]); // Only depends on requestSent state
+  }, [requestSent, URL]);
 
   const handleGameComplete = (newPiece, message, setSolved) => {
     if (!pieces.includes(newPiece)) {
       setPieces([...pieces, newPiece]);
       setMessages([...messages, message]);
       setSolved(true);
+      
+      // Close the popup after completion
+      setShowGamePopup(false);
       
       // Play success sound
       const successSound = new Audio("/success.mp3");
@@ -73,6 +78,42 @@ function Round3() {
       setTimeout(() => setActiveGame("card"), 1500);
     }
   }, [mazeSolved, memorySolved, activeGame]);
+
+  const handlePlayGame = (game) => {
+    setCurrentGame(game);
+    setShowGamePopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowGamePopup(false);
+    setCurrentGame(null);
+  };
+
+  // Render the game component based on the current game
+  const renderGameComponent = () => {
+    switch (currentGame) {
+      case "maze":
+        return <MazeGame onComplete={() => handleGameComplete(
+          "https://youtu.be/maze123", 
+          "Maze Game completed! First piece of the link unlocked!", 
+          setMazeSolved
+        )} />;
+      case "memory":
+        return <MemoryGame onComplete={() => handleGameComplete(
+          "https://youtu.be/memory456", 
+          "Memory Game solved! Second piece of the link unlocked!", 
+          setMemorySolved
+        )} />;
+      case "card":
+        return <CardPuzzle onComplete={() => handleGameComplete(
+          "https://youtu.be/card789", 
+          "Card Puzzle cracked! Final piece of the link unlocked!", 
+          setCardSolved
+        )} />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="squid-round3-container">
@@ -97,23 +138,16 @@ function Round3() {
             <h3 className="squid-round3-game-title">Maze Game</h3>
           </div>
           <div className="squid-round3-game-content">
-            <MazeGame onComplete={() => handleGameComplete(
-              "https://youtu.be/maze123", 
-              "Maze Game completed! First piece of the link unlocked!", 
-              setMazeSolved
-            )} />
-            
-            <button 
-              className={`squid-round3-button ${mazeSolved ? 'squid-round3-button-solved' : ''}`}
-              onClick={() => mazeSolved && handleGameComplete(
-                "https://youtu.be/maze123", 
-                "Maze Game completed! First piece of the link unlocked!", 
-                setMazeSolved
-              )} 
-              disabled={!mazeSolved}
-            >
-              {mazeSolved ? "Completed" : "Submit"}
-            </button>
+            <div className="squid-round3-game-placeholder">
+              <p className="squid-round3-game-description">Navigate through the maze to find the exit.</p>
+              <button 
+                className="squid-round3-play-button"
+                onClick={() => handlePlayGame("maze")}
+                disabled={mazeSolved}
+              >
+                {mazeSolved ? "Completed" : "Play Game"}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -123,23 +157,16 @@ function Round3() {
             <h3 className="squid-round3-game-title">Memory Game</h3>
           </div>
           <div className="squid-round3-game-content">
-            <MemoryGame onComplete={() => handleGameComplete(
-              "https://youtu.be/memory456", 
-              "Memory Game solved! Second piece of the link unlocked!", 
-              setMemorySolved
-            )} />
-            
-            <button 
-              className={`squid-round3-button ${memorySolved ? 'squid-round3-button-solved' : ''}`}
-              onClick={() => memorySolved && handleGameComplete(
-                "https://youtu.be/memory456", 
-                "Memory Game solved! Second piece of the link unlocked!", 
-                setMemorySolved
-              )} 
-              disabled={!memorySolved}
-            >
-              {memorySolved ? "Completed" : "Submit"}
-            </button>
+            <div className="squid-round3-game-placeholder">
+              <p className="squid-round3-game-description">Test your memory by matching pairs of cards.</p>
+              <button 
+                className="squid-round3-play-button"
+                onClick={() => handlePlayGame("memory")}
+                disabled={memorySolved}
+              >
+                {memorySolved ? "Completed" : "Play Game"}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -149,26 +176,31 @@ function Round3() {
             <h3 className="squid-round3-game-title">Card Puzzle</h3>
           </div>
           <div className="squid-round3-game-content">
-            <CardPuzzle onComplete={() => handleGameComplete(
-              "https://youtu.be/card789", 
-              "Card Puzzle cracked! Final piece of the link unlocked!", 
-              setCardSolved
-            )} />
-            
-            <button 
-              className={`squid-round3-button ${cardSolved ? 'squid-round3-button-solved' : ''}`}
-              onClick={() => cardSolved && handleGameComplete(
-                "https://youtu.be/card789", 
-                "Card Puzzle cracked! Final piece of the link unlocked!", 
-                setCardSolved
-              )} 
-              disabled={!cardSolved}
-            >
-              {cardSolved ? "Completed" : "Submit"}
-            </button>
+            <div className="squid-round3-game-placeholder">
+              <p className="squid-round3-game-description">Solve the card puzzle to reveal the final piece.</p>
+              <button 
+                className="squid-round3-play-button"
+                onClick={() => handlePlayGame("card")}
+                disabled={cardSolved}
+              >
+                {cardSolved ? "Completed" : "Play Game"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Game Popup */}
+      {showGamePopup && (
+        <div className="squid-round3-popup-overlay">
+          <div className="squid-round3-popup-container">
+            <button className="squid-round3-popup-close" onClick={handleClosePopup}>✕</button>
+            <div className="squid-round3-popup-content">
+              {renderGameComponent()}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="squid-round3-messages">
         {messages.map((msg, index) => (

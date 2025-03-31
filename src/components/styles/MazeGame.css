@@ -1,0 +1,191 @@
+.squid-maze-game {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #0f1c2e;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  }
+  
+  .squid-maze-instructions {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem;
+    color: #bb86fc;
+    font-size: 0.9rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    border-left: 3px solid #bb86fc;
+  }
+  
+  .squid-maze-instructions p {
+    margin: 0.3rem 0;
+  }
+  
+  .squid-maze-status {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .squid-maze-start-button, .squid-maze-reset-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .squid-maze-start-button {
+    background-color: #03dac6;
+    color: #0f1c2e;
+  }
+  
+  .squid-maze-start-button:hover {
+    background-color: #00b0a2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(3, 218, 198, 0.3);
+  }
+  
+  .squid-maze-reset-button {
+    background-color: #cf6679;
+    color: #0f1c2e;
+  }
+  
+  .squid-maze-reset-button:hover {
+    background-color: #b8505f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(207, 102, 121, 0.3);
+  }
+  
+  .squid-maze-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #bb86fc;
+    animation: pulse 1s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    from {
+      box-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
+    }
+    to {
+      box-shadow: 0 0 20px rgba(187, 134, 252, 0.8);
+    }
+  }
+  
+  .squid-maze-timer-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #bb86fc;
+  }
+  
+  .squid-maze-timer-label {
+    font-size: 0.7rem;
+    color: #bb86fc;
+    opacity: 0.8;
+  }
+  
+  .squid-maze-container {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1;
+    border: 2px solid #bb86fc;
+    border-radius: 8px;
+    overflow: hidden;
+    outline: none;
+  }
+  
+  .squid-maze-row {
+    display: flex;
+    width: 100%;
+    height: 10%;
+  }
+  
+  .squid-maze-cell {
+    width: 10%;
+    height: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .squid-maze-wall {
+    background-color: #121212;
+    border: 1px solid #1d1d1d;
+  }
+  
+  .squid-maze-path {
+    background-color: #1e2a36;
+    border: 1px solid #233344;
+  }
+  
+  .squid-maze-player {
+    background-color: #ff0266;
+    border-radius: 50%;
+    animation: playerPulse 0.8s infinite alternate;
+  }
+  
+  @keyframes playerPulse {
+    from {
+      transform: scale(0.8);
+      box-shadow: 0 0 0 rgba(255, 2, 102, 0.7);
+    }
+    to {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(255, 2, 102, 0.7);
+    }
+  }
+  
+  .squid-maze-finish {
+    background-color: #03dac6;
+    animation: finishPulse 1.5s infinite alternate;
+  }
+  
+  @keyframes finishPulse {
+    from {
+      opacity: 0.7;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .squid-maze-win-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    text-align: center;
+    background-color: rgba(3, 218, 198, 0.15);
+    border-radius: 6px;
+    color: #03dac6;
+    font-size: 1.2rem;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .squid-maze-win-message span {
+    font-weight: bold;
+    color: #bb86fc;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

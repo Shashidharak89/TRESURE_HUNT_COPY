@@ -25,6 +25,7 @@ function App() {
           <Route path="/final" element={<FinalRound />} />
         </Routes>
       </div>
+     
     </Router>
   );
 }

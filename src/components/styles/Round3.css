@@ -1,349 +1,435 @@
 /* Squid Game theme CSS for Round3 Component */
 .squid-round3-container {
-    background-color: #121212;
-    color: #ffffff;
-    min-height: 100vh;
-    padding: 2rem;
-    font-family: 'Roboto', sans-serif;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .squid-round3-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 0, 128, 0.05), transparent 80%);
-    z-index: 0;
-    pointer-events: none;
-  }
-  
-  .squid-round3-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .squid-round3-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin: 0;
-    color: #ff0080;
+  background-color: #121212;
+  color: #ffffff;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.squid-round3-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 0, 128, 0.05), transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.squid-round3-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.squid-round3-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: #ff0080;
+  text-shadow: 0 0 10px rgba(255, 0, 128, 0.7);
+  letter-spacing: 0.5rem;
+  animation: squidPulse 4s infinite;
+}
+
+.squid-round3-subtitle {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #ccc;
+  letter-spacing: 0.1rem;
+}
+
+.squid-round3-progress {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.squid-round3-progress-circle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ff0080;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+.squid-round3-progress-complete {
+  background-color: #ff0080;
+  box-shadow: 0 0 15px rgba(255, 0, 128, 0.7);
+  transform: scale(1.2);
+}
+
+.squid-round3-games-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.squid-round3-game-panel {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px);
+  opacity: 0.6;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: relative;
+  overflow: hidden;
+}
+
+.squid-round3-game-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #ff0080, #7928ca);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.squid-round3-active {
+  transform: translateY(0);
+  opacity: 1;
+  border: 1px solid rgba(255, 0, 128, 0.3);
+}
+
+.squid-round3-active::before {
+  opacity: 1;
+}
+
+.squid-round3-game-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 0.75rem;
+}
+
+.squid-round3-triangle, 
+.squid-round3-circle, 
+.squid-round3-square {
+  width: 24px;
+  height: 24px;
+  animation: squidRotate 6s infinite linear;
+}
+
+.squid-round3-triangle {
+  background-color: transparent;
+  border-bottom: 24px solid #ff0080;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  height: 0;
+  width: 0;
+}
+
+.squid-round3-circle {
+  background-color: transparent;
+  border: 3px solid #ff0080;
+  border-radius: 50%;
+}
+
+.squid-round3-square {
+  background-color: transparent;
+  border: 3px solid #ff0080;
+}
+
+.squid-round3-game-title {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.1rem;
+}
+
+.squid-round3-game-content {
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.squid-round3-game-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.squid-round3-game-description {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.squid-round3-play-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ff0080;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.squid-round3-play-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.4), transparent);
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.squid-round3-play-button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.squid-round3-play-button:disabled {
+  background-color: #ff0080;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Popup Styles */
+.squid-round3-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: squidFadeIn 0.3s ease-out;
+}
+
+.squid-round3-popup-container {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 0 30px rgba(255, 0, 128, 0.3);
+  border: 1px solid rgba(255, 0, 128, 0.3);
+  animation: squidScaleIn 0.3s ease-out;
+}
+
+.squid-round3-popup-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: #ff0080;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.squid-round3-popup-close:hover {
+  background-color: rgba(255, 0, 128, 0.1);
+  transform: scale(1.1);
+}
+
+.squid-round3-popup-content {
+  padding: 1rem 0;
+}
+
+.squid-round3-messages {
+  margin-top: 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.squid-round3-message {
+  background-color: rgba(255, 0, 128, 0.1);
+  border-left: 4px solid #ff0080;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0 4px 4px 0;
+  animation: squidFadeIn 0.5s ease-out;
+  text-align: left;
+}
+
+.squid-round3-final-link {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: squidGlow 2s infinite alternate;
+  border: 1px solid rgba(255, 0, 128, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.squid-round3-final-message {
+  font-size: 1.2rem;
+  color: #ff0080;
+  margin-bottom: 1rem;
+}
+
+.squid-round3-link-display {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  word-break: break-all;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.squid-round3-next-button {
+  display: inline-block;
+  background-color: #ff0080;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.squid-round3-next-text {
+  position: relative;
+  z-index: 2;
+}
+
+.squid-round3-next-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.squid-round3-next-button:hover::before {
+  transform: translateX(100%);
+}
+
+/* Animations */
+@keyframes squidPulse {
+  0% {
     text-shadow: 0 0 10px rgba(255, 0, 128, 0.7);
-    letter-spacing: 0.5rem;
-    animation: squidPulse 4s infinite;
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 0, 128, 0.9), 0 0 30px rgba(255, 0, 128, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 0, 128, 0.7);
+  }
+}
+
+@keyframes squidRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes squidFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes squidScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes squidGlow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(255, 0, 128, 0.8);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .squid-round3-title {
+    font-size: 2.5rem;
   }
   
-  .squid-round3-subtitle {
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    color: #ccc;
-    letter-spacing: 0.1rem;
-  }
-  
-  .squid-round3-progress {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  
-  .squid-round3-progress-circle {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ff0080;
-    border-radius: 50%;
-    transition: all 0.5s ease;
-  }
-  
-  .squid-round3-progress-complete {
-    background-color: #ff0080;
-    box-shadow: 0 0 15px rgba(255, 0, 128, 0.7);
-    transform: scale(1.2);
-  }
-  
-  .squid-round3-games-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
+  .squid-round3-container {
+    padding: 1.5rem;
   }
   
   .squid-round3-game-panel {
-    background-color: #1e1e1e;
-    border-radius: 8px;
+    padding: 1rem;
+  }
+  
+  .squid-round3-popup-container {
     padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    transform: translateY(20px);
-    opacity: 0.6;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    position: relative;
-    overflow: hidden;
+    width: 95%;
   }
-  
-  .squid-round3-game-panel::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(to bottom, #ff0080, #7928ca);
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-  }
-  
-  .squid-round3-active {
-    transform: translateY(0);
-    opacity: 1;
-    border: 1px solid rgba(255, 0, 128, 0.3);
-  }
-  
-  .squid-round3-active::before {
-    opacity: 1;
-  }
-  
-  .squid-round3-game-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    gap: 0.75rem;
-  }
-  
-  .squid-round3-triangle, 
-  .squid-round3-circle, 
-  .squid-round3-square {
-    width: 24px;
-    height: 24px;
-    animation: squidRotate 6s infinite linear;
-  }
-  
-  .squid-round3-triangle {
-    background-color: transparent;
-    border-bottom: 24px solid #ff0080;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-    height: 0;
-    width: 0;
-  }
-  
-  .squid-round3-circle {
-    background-color: transparent;
-    border: 3px solid #ff0080;
-    border-radius: 50%;
-  }
-  
-  .squid-round3-square {
-    background-color: transparent;
-    border: 3px solid #ff0080;
-  }
-  
-  .squid-round3-game-title {
-    font-size: 1.5rem;
-    margin: 0;
-    color: #ffffff;
-    letter-spacing: 0.1rem;
-  }
-  
-  .squid-round3-game-content {
-    position: relative;
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  
-  .squid-round3-button {
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid #ff0080;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .squid-round3-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.4), transparent);
-    transition: all 0.6s ease;
-    z-index: -1;
-  }
-  
-  .squid-round3-button:hover:not(:disabled)::before {
-    left: 100%;
-  }
-  
-  .squid-round3-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .squid-round3-button-solved {
-    background-color: #ff0080;
-    box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
-  }
-  
-  .squid-round3-messages {
-    margin-top: 2rem;
-    text-align: center;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .squid-round3-message {
-    background-color: rgba(255, 0, 128, 0.1);
-    border-left: 4px solid #ff0080;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 0 4px 4px 0;
-    animation: squidFadeIn 0.5s ease-out;
-    text-align: left;
-  }
-  
-  .squid-round3-final-link {
-    margin-top: 3rem;
-    padding: 2rem;
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: squidGlow 2s infinite alternate;
-    border: 1px solid rgba(255, 0, 128, 0.5);
-    position: relative;
-    z-index: 2;
-  }
-  
-  .squid-round3-final-message {
-    font-size: 1.2rem;
-    color: #ff0080;
-    margin-bottom: 1rem;
-  }
-  
-  .squid-round3-link-display {
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    word-break: break-all;
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-  }
-  
-  .squid-round3-next-button {
-    display: inline-block;
-    background-color: #ff0080;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 1rem 2.5rem;
-    border-radius: 4px;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .squid-round3-next-text {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .squid-round3-next-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-  }
-  
-  .squid-round3-next-button:hover::before {
-    transform: translateX(100%);
-  }
-  
-  /* Animations */
-  @keyframes squidPulse {
-    0% {
-      text-shadow: 0 0 10px rgba(255, 0, 128, 0.7);
-    }
-    50% {
-      text-shadow: 0 0 20px rgba(255, 0, 128, 0.9), 0 0 30px rgba(255, 0, 128, 0.7);
-    }
-    100% {
-      text-shadow: 0 0 10px rgba(255, 0, 128, 0.7);
-    }
-  }
-  
-  @keyframes squidRotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes squidFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes squidGlow {
-    from {
-      box-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
-    }
-    to {
-      box-shadow: 0 0 30px rgba(255, 0, 128, 0.8);
-    }
-  }
-  
-  /* Media Queries */
-  @media (max-width: 768px) {
-    .squid-round3-title {
-      font-size: 2.5rem;
-    }
-    
-    .squid-round3-container {
-      padding: 1.5rem;
-    }
-    
-    .squid-round3-game-panel {
-      padding: 1rem;
-    }
-  }
+}
