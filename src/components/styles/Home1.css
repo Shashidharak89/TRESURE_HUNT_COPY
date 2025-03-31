@@ -1,0 +1,550 @@
+/* Dark Squid Game theme */
+.cipher_home_container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #0a0a0a;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Background shapes */
+.cipher_shape {
+  position: absolute;
+  opacity: 0.15;
+  z-index: 1;
+  filter: blur(2px);
+}
+
+.cipher_triangle {
+  width: 0;
+  height: 0;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-bottom: 350px solid #ff0066;
+  top: 10%;
+  left: 10%;
+  animation: cipher_rotate 20s infinite linear, cipher_float 15s infinite ease-in-out;
+}
+
+.cipher_circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #00ccff;
+  bottom: 10%;
+  right: 10%;
+  animation: cipher_pulse 8s infinite ease-in-out, cipher_float 10s infinite ease-in-out;
+}
+
+.cipher_square {
+  width: 250px;
+  height: 250px;
+  background-color: #ffcc00;
+  top: 60%;
+  left: 30%;
+  animation: cipher_rotate 12s infinite linear, cipher_float 12s infinite ease-in-out;
+}
+
+.cipher_hexagon {
+  width: 200px;
+  height: 230px;
+  background: #4ade80;
+  position: absolute;
+  bottom: 15%;
+  left: 15%;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation: cipher_rotate 16s infinite linear reverse, cipher_float 12s infinite ease-in-out;
+}
+
+.cipher_star {
+  width: 0;
+  height: 0;
+  color: #a855f7;
+  position: absolute;
+  top: 25%;
+  right: 20%;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid #a855f7;
+  border-left: 100px solid transparent;
+  transform: rotate(35deg);
+  animation: cipher_rotate 25s infinite linear, cipher_float 18s infinite ease-in-out;
+}
+
+.cipher_star:before {
+  border-bottom: 80px solid #a855f7;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  position: absolute;
+  top: -45px;
+  left: -65px;
+  content: '';
+  transform: rotate(-35deg);
+}
+
+.cipher_star:after {
+  position: absolute;
+  top: 3px;
+  left: -105px;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid #a855f7;
+  border-left: 100px solid transparent;
+  transform: rotate(-70deg);
+  content: '';
+}
+
+/* Floating doll animation */
+.cipher_doll_container {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  z-index: 2;
+  animation: cipher_doll_float 6s ease-in-out infinite;
+}
+
+.cipher_doll {
+  width: 80px;
+  height: 120px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200'%3E%3Cellipse cx='50' cy='40' rx='25' ry='30' fill='%23FFD700'/%3E%3Ccircle cx='40' cy='35' r='5' fill='%23000'/%3E%3Ccircle cx='60' cy='35' r='5' fill='%23000'/%3E%3Cpath d='M45 50 Q50 55 55 50' stroke='%23000' stroke-width='2' fill='none'/%3E%3Crect x='35' y='70' width='30' height='60' fill='%23FF6B6B'/%3E%3Crect x='30' y='130' width='15' height='30' fill='%23000'/%3E%3Crect x='55' y='130' width='15' height='30' fill='%23000'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  transform-origin: 50% 0;
+  animation: cipher_doll_rotate 4s ease-in-out infinite alternate;
+}
+
+@keyframes cipher_doll_float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes cipher_doll_rotate {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+
+/* Intro animation */
+.cipher_intro_animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  background-color: #0a0a0a;
+  animation: cipher_fade_out 1s ease-out 5s forwards;
+}
+
+.cipher_mask {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.cipher_title_text {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ff0066;
+  letter-spacing: 8px;
+  animation: cipher_zoom_in 1s ease-out, cipher_glow 2s infinite alternate;
+}
+
+.cipher_presents_text {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  opacity: 0;
+  color: #ffffff;
+  animation: cipher_fade_in 1s ease-out 1s forwards;
+}
+
+.cipher_event_name {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 5px;
+  opacity: 0;
+  animation: cipher_slide_up 1s ease-out 2s forwards, cipher_glow 2s infinite 2s alternate;
+}
+
+/* Main content */
+.cipher_main_content {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  animation: cipher_fade_in 1s ease-out forwards;
+}
+
+.cipher_logo_container {
+  margin-bottom: 40px;
+}
+
+.cipher_logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.cipher_logo_text {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ff0066;
+  letter-spacing: 5px;
+  opacity: 0;
+  animation: cipher_letter_appear 0.3s ease-out forwards;
+}
+
+.cipher_logo_text:nth-child(1) { animation-delay: 0.1s; }
+.cipher_logo_text:nth-child(2) { animation-delay: 0.2s; }
+.cipher_logo_text:nth-child(3) { animation-delay: 0.3s; }
+.cipher_logo_text:nth-child(4) { animation-delay: 0.4s; }
+.cipher_logo_text:nth-child(5) { animation-delay: 0.5s; }
+.cipher_logo_text:nth-child(6) { animation-delay: 0.6s; }
+
+.cipher_logo_subtitle {
+  font-size: 2rem;
+  color: #ffffff;
+  letter-spacing: 15px;
+  padding-left: 15px;
+  opacity: 0;
+  animation: cipher_fade_in 1s ease-out 0.7s forwards, cipher_glow 2s infinite 1s alternate;
+}
+
+.cipher_description {
+  max-width: 600px;
+  margin-bottom: 50px;
+}
+
+.cipher_description p {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0;
+  animation: cipher_slide_up 0.5s ease-out forwards;
+}
+
+.cipher_description p:nth-child(1) { animation-delay: 0.8s; }
+.cipher_description p:nth-child(2) { animation-delay: 1s; }
+.cipher_description p:nth-child(3) { animation-delay: 1.2s; }
+
+.cipher_start_button {
+  position: relative;
+  padding: 15px 60px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ff0066;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: cipher_fade_in 0.5s ease-out 1.4s forwards, cipher_pulse 2s infinite 1.4s alternate;
+  z-index: 2;
+}
+
+.cipher_button_text {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.cipher_button_hover {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #ff0066;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.cipher_start_button:hover .cipher_button_hover {
+  left: 0;
+}
+
+.cipher_start_button:hover {
+  box-shadow: 0 0 20px #ff0066;
+  letter-spacing: 3px;
+}
+
+/* Traffic light */
+.cipher_traffic_light {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 70px;
+  background-color: #222;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 5px;
+  opacity: 0;
+  animation: cipher_fade_in 0.5s ease-out 1.6s forwards;
+}
+
+.cipher_red_light, .cipher_green_light {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.cipher_red_light {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.cipher_green_light {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+.cipher_start_button:hover ~ .cipher_traffic_light .cipher_red_light {
+  background-color: #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+  animation: cipher_blink 0.5s infinite;
+}
+
+.cipher_start_button:not(:hover) ~ .cipher_traffic_light .cipher_green_light {
+  background-color: #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+/* Countdown animation */
+.cipher_countdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.cipher_countdown_circle {
+  width: 150px;
+  height: 150px;
+  background-color: #ff0066;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: cipher_countdown 1.5s linear forwards;
+}
+
+.cipher_countdown_number {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #ffffff;
+  animation: cipher_number_change 1.5s steps(1) forwards;
+}
+
+@keyframes cipher_countdown {
+  0% { transform: scale(1); }
+  33% { transform: scale(1.2); }
+  36% { transform: scale(1); }
+  66% { transform: scale(1.2); }
+  69% { transform: scale(1); }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes cipher_number_change {
+  0% { content: "3"; }
+  33% { content: "2"; }
+  66% { content: "1"; }
+  100% { content: "GO!"; }
+}
+
+/* Guards */
+.cipher_guard_container {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.cipher_guard {
+  width: 120px;
+  height: 240px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  opacity: 0;
+  animation: cipher_fade_in 1s ease-out 1.6s forwards;
+}
+
+.cipher_guard_left {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200'%3E%3Crect x='40' y='30' width='20' height='100' fill='%23ff0066'/%3E%3Ccircle cx='50' cy='20' r='20' fill='%23000000'/%3E%3Crect x='35' y='130' width='10' height='40' fill='%23000000'/%3E%3Crect x='55' y='130' width='10' height='40' fill='%23000000'/%3E%3C/svg%3E");
+  animation: cipher_fade_in 1s ease-out 1.6s forwards, cipher_guard_left_move 5s ease-in-out 2s infinite;
+}
+
+.cipher_guard_right {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200'%3E%3Crect x='40' y='30' width='20' height='100' fill='%23ff0066'/%3E%3Ccircle cx='50' cy='20' r='20' fill='%23000000'/%3E%3Crect x='35' y='130' width='10' height='40' fill='%23000000'/%3E%3Crect x='55' y='130' width='10' height='40' fill='%23000000'/%3E%3C/svg%3E");
+  animation: cipher_fade_in 1s ease-out 1.6s forwards, cipher_guard_right_move 5s ease-in-out 2.5s infinite;
+}
+
+/* Falling money animation */
+.cipher_money_container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.cipher_money {
+  position: absolute;
+  top: -60px;
+  width: 40px;
+  height: 20px;
+  background-color: #85bb65;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  animation: cipher_fall linear infinite;
+}
+
+.cipher_money::before {
+  content: '$';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: darkgreen;
+  font-weight: bold;
+}
+
+/* Exit animation */
+.cipher_exit_animation .cipher_shape {
+  animation-play-state: paused;
+}
+
+.cipher_exit_animation .cipher_main_content {
+  animation: cipher_zoom_out 1.5s ease-out forwards;
+}
+
+.cipher_exit_animation .cipher_guard_left,
+.cipher_exit_animation .cipher_guard_right {
+  animation: cipher_guard_exit 1.5s ease-out forwards;
+}
+
+/* Animations */
+@keyframes cipher_rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cipher_pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes cipher_float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes cipher_fade_in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cipher_fade_out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes cipher_zoom_in {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes cipher_zoom_out {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(3); opacity: 0; }
+}
+
+@keyframes cipher_slide_up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes cipher_letter_appear {
+  from { transform: translateY(-20px) rotate(10deg); opacity: 0; }
+  to { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
+
+@keyframes cipher_glow {
+  from { text-shadow: 0 0 5px rgba(255, 0, 102, 0.5); }
+  to { text-shadow: 0 0 20px rgba(255, 0, 102, 1); }
+}
+
+@keyframes cipher_blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes cipher_guard_left_move {
+  0% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(30px) rotate(5deg); }
+  50% { transform: translateX(0) rotate(0deg); }
+  75% { transform: translateX(-30px) rotate(-5deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes cipher_guard_right_move {
+  0% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-30px) rotate(-5deg); }
+  50% { transform: translateX(0) rotate(0deg); }
+  75% { transform: translateX(30px) rotate(5deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes cipher_guard_exit {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100px); opacity: 0; }
+}
+
+@keyframes cipher_fall {
+  0% { 
+    transform: translateY(0) rotate(0deg); 
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(100vh) rotate(360deg); 
+    opacity: 0;
+  }
+}

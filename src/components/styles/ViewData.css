@@ -1,0 +1,466 @@
+/* ViewData.css - Squid Game Theme with Animations */
+:root {
+    --squid-pink: #ff0a7c;
+    --squid-teal: #29b9ad;
+    --squid-dark: #121212;
+    --squid-gray: #1e1e1e;
+    --squid-light: #e8e8e8;
+  }
+  
+  .squid-container {
+    background-color: var(--squid-dark);
+    min-height: 100vh;
+    color: var(--squid-light);
+    font-family: 'Roboto', sans-serif;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 1s ease-in-out;
+  }
+  
+  .squid-mask-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    animation: spin 2s infinite linear;
+  }
+  
+  .squid-mask-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--squid-pink);
+  }
+  
+  .squid-mask-triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid var(--squid-pink);
+  }
+  
+  .squid-mask-square {
+    width: 40px;
+    height: 40px;
+    background-color: var(--squid-pink);
+  }
+  
+  .squid-header {
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .squid-title {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--squid-light);
+    text-transform: uppercase;
+    animation: pulseTitle 3s infinite;
+  }
+  
+  .squid-round {
+    color: var(--squid-pink);
+    font-size: 2.5rem;
+  }
+  
+  .squid-pink-light {
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: var(--squid-pink);
+    opacity: 0.1;
+    filter: blur(80px);
+    animation: pulsePink 4s infinite;
+  }
+  
+  .squid-toggle-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .squid-toggle {
+    background-color: var(--squid-gray);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--squid-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.3s ease;
+  }
+  
+  .squid-toggle:hover::before {
+    left: 100%;
+  }
+  
+  .squid-toggle-active {
+    background-color: var(--squid-pink);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--squid-pink);
+  }
+  
+  .squid-toggle-text {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .squid-content {
+    position: relative;
+  }
+  
+  .squid-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+  }
+  
+  .squid-doll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: rotate 4s infinite alternate;
+  }
+  
+  .squid-doll-head {
+    width: 50px;
+    height: 50px;
+    background-color: var(--squid-light);
+    border-radius: 50%;
+  }
+  
+  .squid-doll-body {
+    width: 70px;
+    height: 100px;
+    background-color: var(--squid-pink);
+    border-radius: 0 0 35px 35px;
+    margin-top: -10px;
+  }
+  
+  .squid-loading-text {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: var(--squid-light);
+    animation: blink 1s infinite;
+  }
+  
+  .squid-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+  }
+  
+  .squid-error-icon {
+    font-size: 3rem;
+    color: var(--squid-pink);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    animation: shake 0.5s infinite;
+  }
+  
+  .squid-error-message {
+    font-size: 1.5rem;
+    color: var(--squid-light);
+    text-align: center;
+  }
+  
+  .squid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .squid-card {
+    background-color: var(--squid-gray);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+  
+  .squid-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 10, 124, 0.2);
+  }
+  
+  .squid-card-number {
+    background-color: var(--squid-pink);
+    color: var(--squid-light);
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  
+  .squid-card-content {
+    padding: 1.5rem;
+  }
+  
+  .squid-card-players {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+  }
+  
+  .squid-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .squid-player-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--squid-teal);
+    margin-bottom: 0.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-player-avatar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    animation: avatarSweep 3s infinite;
+  }
+  
+  .squid-player-name {
+    font-size: 1rem;
+    color: var(--squid-light);
+    font-weight: 500;
+  }
+  
+  .squid-card-timer {
+    background-color: rgba(255, 10, 124, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .squid-timer-label {
+    font-size: 0.8rem;
+    color: var(--squid-light);
+    margin-bottom: 0.5rem;
+  }
+  
+  .squid-timer-value {
+    font-size: 1.8rem;
+    color: var(--squid-pink);
+    font-weight: 700;
+    animation: pulse 2s infinite;
+  }
+  
+  .squid-card-time {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .squid-time-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .squid-time-label {
+    font-size: 0.8rem;
+    color: var(--squid-light);
+    opacity: 0.7;
+    margin-bottom: 0.2rem;
+  }
+  
+  .squid-time-value {
+    font-size: 1rem;
+    color: var(--squid-light);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  @keyframes pulseTitle {
+    0%, 100% {
+      text-shadow: 0 0 10px rgba(255, 10, 124, 0.5);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(255, 10, 124, 0.8);
+    }
+  }
+  
+  @keyframes pulsePink {
+    0%, 100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 0.2;
+    }
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(5deg);
+    }
+  }
+  
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes avatarSweep {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .squid-title {
+      font-size: 2rem;
+    }
+    
+    .squid-round {
+      font-size: 1.8rem;
+    }
+    
+    .squid-toggle {
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .squid-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .squid-container {
+      padding: 1rem;
+    }
+    
+    .squid-title {
+      font-size: 1.5rem;
+    }
+    
+    .squid-round {
+      font-size: 1.3rem;
+    }
+    
+    .squid-toggle-container {
+      gap: 0.5rem;
+    }
+    
+    .squid-toggle {
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+    }
+  }

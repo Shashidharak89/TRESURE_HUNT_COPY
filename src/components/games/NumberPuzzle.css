@@ -1,0 +1,36 @@
+.number-puzzle-container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: black;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-gap: 5px;
+    margin: 20px auto;
+    justify-content: center;
+    color: black;
+  }
+  
+  .tile {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid #000;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .tile:empty {
+    background-color: transparent;
+    border: none;
+    cursor: default;
+  }
+  
+  .tile:hover {
+    background-color: #ddd;
+  }
+  
