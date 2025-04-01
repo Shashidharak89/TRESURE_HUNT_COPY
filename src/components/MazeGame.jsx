@@ -59,19 +59,25 @@ const MazeGame = ({ onComplete }) => {
   const generateMaze = () => {
     // Create a more compact but challenging 12x12 maze
     const mazeLayout = [
-      [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-      [1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
-      [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1],
-      [1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-      [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1],
-      [1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+      [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+      [0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1],
+      [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+      [1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
+      [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+      [1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1],
+      [0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0],
+      [1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+      [0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
+
+
+
+
+
+
 
     setMaze(mazeLayout);
     setPlayerPosition({ x: 0, y: 0 });
@@ -80,11 +86,11 @@ const MazeGame = ({ onComplete }) => {
 
   const handleKeyDown = (e) => {
     if (!gameStarted || gameWon) return;
-    
+
     const { x, y } = playerPosition;
     let newX = x;
     let newY = y;
-    
+
     switch (e.key) {
       case "ArrowUp":
         newY = Math.max(0, y - 1);
@@ -101,7 +107,7 @@ const MazeGame = ({ onComplete }) => {
       default:
         return;
     }
-    
+
     // Check if the new position is a path (not a wall)
     if (maze[newY][newX] === 0) {
       setPlayerPosition({ x: newX, y: newY });
@@ -111,11 +117,11 @@ const MazeGame = ({ onComplete }) => {
 
   const handleDirectionClick = (direction) => {
     if (!gameStarted || gameWon) return;
-    
+
     const { x, y } = playerPosition;
     let newX = x;
     let newY = y;
-    
+
     switch (direction) {
       case "up":
         newY = Math.max(0, y - 1);
@@ -132,7 +138,7 @@ const MazeGame = ({ onComplete }) => {
       default:
         return;
     }
-    
+
     // Check if the new position is a path (not a wall)
     if (maze[newY][newX] === 0) {
       setPlayerPosition({ x: newX, y: newY });
@@ -164,7 +170,7 @@ const MazeGame = ({ onComplete }) => {
         <h1>Space Maze</h1>
         <p>Guide your rocket to Earth</p>
       </div>
-      
+
       <div className="compact-maze-status">
         {!gameStarted ? (
           <button className="compact-maze-start-button" onClick={startGame}>
@@ -181,11 +187,11 @@ const MazeGame = ({ onComplete }) => {
           </div>
         )}
       </div>
-      
+
       {gameStarted && (
         <div className="compact-maze-gameplay">
-          <div 
-            className="compact-maze-container" 
+          <div
+            className="compact-maze-container"
             ref={mazeRef}
             tabIndex={0}
             onKeyDown={handleKeyDown}
@@ -193,24 +199,24 @@ const MazeGame = ({ onComplete }) => {
             {maze.map((row, y) => (
               <div key={y} className="compact-maze-row">
                 {row.map((cell, x) => (
-                  <div 
-                    key={`${y}-${x}`} 
+                  <div
+                    key={`${y}-${x}`}
                     className={`compact-maze-cell ${cell === 1 ? 'compact-maze-wall' : 'compact-maze-path'} 
                       ${finishPosition.x === x && finishPosition.y === y ? 'compact-maze-finish' : ''}`}
                   />
                 ))}
               </div>
             ))}
-            
-            <div 
-              ref={rocketRef} 
+
+            <div
+              ref={rocketRef}
               className="compact-maze-rocket"
-              style={{ 
-                transform: `translate(${playerPosition.x * 30}px, ${playerPosition.y * 30}px)` 
+              style={{
+                transform: `translate(${playerPosition.x * 30}px, ${playerPosition.y * 30}px)`
               }}
             />
           </div>
-          
+
           <div className="compact-maze-controls">
             <button
               className="compact-maze-control-button up"
@@ -241,10 +247,10 @@ const MazeGame = ({ onComplete }) => {
           </div>
         </div>
       )}
-      
+
       {gameWon && (
         <div className="compact-maze-win-message">
-          <span>Success!</span> 
+          <span>Success!</span>
           <p>Completed in {moveCount} moves</p>
         </div>
       )}
