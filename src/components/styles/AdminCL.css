@@ -1,0 +1,733 @@
+/* Base Styles */
+:root {
+    --squid-pink: #ff0a78;
+    --squid-pink-dark: #d30068;
+    --squid-pink-light: #ff5ba8;
+    --squid-gray-dark: #121219;
+    --squid-gray: #1e1e2a;
+    --squid-gray-light: #2a2a3a;
+    --squid-green: #2ecc71;
+    --squid-red: #e74c3c;
+    --squid-text-light: #f0f0f5;
+    --squid-text-muted: #a0a0b0;
+  }
+  
+  /* Main Container */
+  .squid-admin-container {
+    min-height: 100vh;
+    background-color: var(--squid-gray-dark);
+    color: var(--squid-text-light);
+    padding: 1.5rem;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(255, 10, 120, 0.05) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(255, 10, 120, 0.05) 0%, transparent 20%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-admin-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--squid-pink), transparent);
+    animation: squidGlowLine 8s infinite;
+  }
+  
+  @keyframes squidGlowLine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Header */
+  .squid-admin-header {
+    margin-bottom: 2rem;
+    animation: fadeInDown 0.8s ease-out;
+  }
+  
+  .squid-admin-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--squid-pink);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .squid-admin-title-number {
+    color: var(--squid-pink-light);
+    margin-right: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .squid-admin-title-number::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 2px;
+    background: var(--squid-pink-light);
+    bottom: 14px;
+    left: -50%;
+    animation: lineFlicker 2s infinite;
+  }
+  
+  @keyframes lineFlicker {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  .squid-admin-circle-animate {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background-color: var(--squid-pink);
+    margin-left: 0.75rem;
+    animation: rotatePulse 10s linear infinite;
+  }
+  
+  @keyframes rotatePulse {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+  
+  .squid-admin-subtitle {
+    color: var(--squid-pink-light);
+    font-size: 1.25rem;
+  }
+  
+  /* Round Selector */
+  .squid-admin-round-selector {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--squid-gray);
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .squid-admin-round-button {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background-color: var(--squid-gray-light);
+    color: var(--squid-text-muted);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-admin-round-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+  
+  .squid-admin-round-button:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .squid-admin-round-button:hover {
+    background-color: #343446;
+  }
+  
+  .squid-admin-round-active {
+    background-color: var(--squid-pink);
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 10, 120, 0.4);
+    animation: pulseShadow 2s infinite;
+  }
+  
+  @keyframes pulseShadow {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(255, 10, 120, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(255, 10, 120, 0.6);
+    }
+  }
+  
+  .squid-admin-round-label {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+  }
+  
+  .squid-admin-round-number {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  
+  /* Round Title */
+  .squid-admin-round-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    animation: slideInLeft 0.6s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .squid-admin-round-icon {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: var(--squid-pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: relative;
+  }
+  
+  .squid-admin-round-icon::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--squid-pink);
+    animation: pingPong 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pingPong {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.3;
+    }
+  }
+  
+  .squid-admin-round-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+  }
+  
+  .squid-admin-round-subtitle {
+    color: var(--squid-pink-light);
+    margin: 0;
+  }
+  
+  /* Data Container */
+  .squid-admin-data-container {
+    background-color: var(--squid-gray);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-admin-data-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 10, 120, 0.05), transparent);
+    pointer-events: none;
+  }
+  
+  /* Loader */
+  .squid-admin-loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16rem;
+  }
+  
+  .squid-admin-loader {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: var(--squid-pink);
+    border-right-color: var(--squid-pink);
+    animation: spin 1.5s linear infinite, colorChange 3s ease-in-out infinite;
+  }
+  
+  .squid-admin-loader::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--squid-pink-light);
+    animation: spin 2s linear infinite reverse, pulseSize 2s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes colorChange {
+    0%, 100% { 
+      border-top-color: var(--squid-pink);
+      border-right-color: var(--squid-pink);
+    }
+    50% { 
+      border-top-color: var(--squid-pink-light);
+      border-right-color: var(--squid-pink-light);
+    }
+  }
+  
+  @keyframes pulseSize {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  /* Error */
+  .squid-admin-error {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--squid-text-muted);
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .squid-admin-error-icon {
+    margin: 0 auto 1rem;
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .squid-admin-error-message {
+    font-size: 1.25rem;
+  }
+  
+  .squid-admin-retry-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--squid-pink);
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-admin-retry-button:hover {
+    background-color: var(--squid-pink-dark);
+    transform: translateY(-2px);
+  }
+  
+  .squid-admin-retry-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+  }
+  
+  .squid-admin-retry-button:hover::before {
+    animation: shimmer 1s;
+  }
+  
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Cards Grid */
+  .squid-admin-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .squid-admin-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Card */
+  .squid-admin-card {
+    background-color: var(--squid-gray-light);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border-left: 4px solid var(--squid-pink);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-admin-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .squid-admin-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+      rgba(255, 10, 120, 0.05), 
+      transparent, 
+      rgba(255, 10, 120, 0.05));
+    animation: cardGlow 2s infinite;
+  }
+  
+  @keyframes cardGlow {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  .squid-admin-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+  
+  .squid-admin-team-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .squid-admin-team-icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--squid-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+  }
+  
+  .squid-admin-icon-color {
+    color: var(--squid-pink-light);
+  }
+  
+  .squid-admin-team-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+  }
+  
+  .squid-admin-team-id {
+    color: var(--squid-text-muted);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+  
+  .squid-admin-round-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    background-color: rgba(255, 10, 120, 0.2);
+    color: var(--squid-pink-light);
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .squid-admin-card:hover .squid-admin-round-badge {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  /* Participants */
+  .squid-admin-participants {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .squid-admin-participant {
+    background-color: var(--squid-gray);
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .squid-admin-participant::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--squid-pink-light), transparent);
+    transform: translateX(-100%);
+  }
+  
+  .squid-admin-card:hover .squid-admin-participant::after {
+    animation: slideRightLeft 2s infinite;
+  }
+  
+  @keyframes slideRightLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .squid-admin-participant-label {
+    font-size: 0.75rem;
+    color: var(--squid-text-muted);
+    margin-bottom: 0.25rem;
+  }
+  
+  .squid-admin-participant-name {
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  /* Times */
+  .squid-admin-times {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .squid-admin-time {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+  
+  .squid-admin-time-icon-start {
+    color: var(--squid-green);
+    margin-right: 0.5rem;
+  }
+  
+  .squid-admin-time-icon-end {
+    color: var(--squid-red);
+    margin-right: 0.5rem;
+  }
+  
+  .squid-admin-time-label {
+    font-size: 0.75rem;
+    color: var(--squid-text-muted);
+    margin: 0;
+  }
+  
+  .squid-admin-time-value {
+    margin: 0;
+  }
+  
+  .squid-admin-time-date {
+    font-size: 0.75rem;
+    color: var(--squid-text-muted);
+    margin: 0;
+  }
+  
+  .squid-admin-time-remaining {
+    font-size: 0.75rem;
+    color: var(--squid-pink-light);
+    margin: 0;
+  }
+  
+  /* Empty State */
+  .squid-admin-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--squid-text-muted);
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .squid-admin-empty-icon {
+    margin: 0 auto 1rem;
+    opacity: 0.5;
+  }
+  
+  .squid-admin-empty-message {
+    font-size: 1.25rem;
+  }
+  
+  /* Stats */
+  .squid-admin-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  @media (min-width: 768px) {
+    .squid-admin-stats {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .squid-admin-stat {
+    background-color: var(--squid-gray);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-top: 2px solid #3a3a4a;
+    transition: all 0.3s ease;
+  }
+  
+  .squid-admin-stat-active {
+    border-top: 2px solid var(--squid-pink);
+  }
+  
+  .squid-admin-stat-label {
+    color: var(--squid-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .squid-admin-stat-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .squid-admin-progress-container {
+    height: 0.25rem;
+    background-color: var(--squid-gray-light);
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .squid-admin-progress {
+    height: 100%;
+    width: 0;
+    transition: width 1s ease-in-out;
+    border-radius: 9999px;
+    position: relative;
+  }
+  
+  .squid-admin-progress-current {
+    width: 50%;
+    background-color: var(--squid-pink);
+    animation: progressPulse 2s infinite;
+  }
+  
+  .squid-admin-progress-complete {
+    width: 100%;
+    background-color: var(--squid-text-muted);
+  }
+  
+  @keyframes progressPulse {
+    0%, 100% {
+      background-color: var(--squid-pink);
+    }
+    50% {
+      background-color: var(--squid-pink-light);
+    }
+  }
+  
+  /* Global Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+ 
