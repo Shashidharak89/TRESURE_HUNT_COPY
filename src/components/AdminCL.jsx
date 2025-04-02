@@ -13,10 +13,10 @@ const AdminCL = () => {
   const {URL}=useContext(AuthContext);
 
   const roundTitles = {
-    1: "Red Light, Green Light",
-    2: "Honeycomb Challenge",
-    3: "Tug of War",
-    4: "Marbles Game"
+    1: "Round 1",
+    2: "Round 2",
+    3: "Round 3",
+    4: "Round 4"
   };
 
   const fetchRoundData = async (round) => {
