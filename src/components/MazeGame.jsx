@@ -73,12 +73,6 @@ const MazeGame = ({ onComplete }) => {
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
 
-
-
-
-
-
-
     setMaze(mazeLayout);
     setPlayerPosition({ x: 0, y: 0 });
     setFinishPosition({ x: 11, y: 11 });

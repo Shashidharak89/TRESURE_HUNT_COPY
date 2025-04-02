@@ -55,7 +55,7 @@ function Round1() {
           <div className="squid-game-triangle"></div>
           <div className="squid-game-square"></div>
         </div>
-        <button className="squid-game-button">Inspect Me</button>
+        <button className="squid-game-button">Find Me</button>
       </div>
     </div>
   );
