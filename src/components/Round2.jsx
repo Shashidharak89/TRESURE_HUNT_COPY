@@ -44,7 +44,7 @@ function Round2() {
   }, []);
 
   const handleCheck = () => {
-    if (answer.toLowerCase() === "m") {
+    if (answer.toLowerCase() === "clock") {
       setIsCorrect(true);
       const audio = new Audio("/success.mp3");
       audio.volume = 0.5;
@@ -70,7 +70,7 @@ function Round2() {
         <div className="squid-game-number"><span>2</span></div>
         <h2 className="squid-game-title">Round 2</h2>
         <div className="squid-game-puzzle">
-          <p className="squid-game-question">Solve this puzzle: <br /> You see me once in a minute, twice in a moment, but never in a thousand years. What am I?</p>
+          <p className="squid-game-question">Solve this puzzle: <br /> I have hands but can’t clap. What am I?</p>
           <div className={`squid-game-input-group ${isShaking ? 'shake-animation' : ''}`}>
             <input type="text" className="squid-game-input" value={answer} onChange={(e) => setAnswer(e.target.value)} onKeyPress={handleKeyPress} placeholder="Enter your answer" autoFocus />
             <button className="squid-game-button" onClick={handleCheck}>Submit</button>
